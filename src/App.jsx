@@ -15,6 +15,7 @@ import BookingSettings from "./components/BookingSettings";
 import CustomerList from "./components/CustomerList";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MultiStepBookingForm from "./MultiStepBookingForm";
+import RestaurantBookingForm from "./restaurant-booking-form";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -58,6 +59,7 @@ function App() {
           />
           <Route path="/booking" element={<FormEmail />} />
           <Route path="/multi" element={<MultiStepBookingForm />} />
+          <Route path="/newform" element={<RestaurantBookingForm />} />
           <Route
             path="/dashboard"
             element={

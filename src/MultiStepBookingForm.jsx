@@ -275,37 +275,29 @@ function MultiStepBookingForm() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center">
-      <div className="max-w-lg w-full bg-white rounded-lg shadow-xl overflow-hidden">
-        <div className="bg-blue-600 px-4 py-5 sm:px-6">
-          <h2 className="text-xl leading-6 font-bold text-white">
-            Booking Form
-          </h2>
+      <div className="max-w-4xl w-full bg-white rounded-lg shadow-xl overflow-hidden">
+        <div className="bg- px-4 py-5 sm:px-6">
+          {/* <h2 className="text-xl leading-6 font-bold">Booking Form</h2> */}
           {!showSuccess && (
-            <div className="mt-2 flex justify-between">
+            <div className="mt-2 flex items-center gap-5">
               <div className="flex items-center">
-                <div
-                  className={`flex items-center justify-center h-8 w-8 rounded-full ${
-                    currentStep === 1
-                      ? "bg-white text-blue-600"
-                      : "bg-blue-300 text-white"
-                  } font-bold`}
-                >
+                <div className="flex items-center justify-center h-8 w-8 rounded-full bg-[#a23b21] text-white font-bold">
                   1
                 </div>
-                <div className="ml-3 text-sm text-white">Date & Time</div>
+                <div className="ml-3 text-sm">Date & Time</div>
               </div>
-              <div className="w-12 border-t border-blue-300"></div>
+              <div className="w-12 border-t border-brown-300"></div>
               <div className="flex items-center">
                 <div
                   className={`flex items-center justify-center h-8 w-8 rounded-full ${
                     currentStep === 2
-                      ? "bg-white text-blue-600"
-                      : "bg-blue-300 text-white"
+                      ? "bg-[#a23b21] text-white"
+                      : "bg-[#d2bab4] text-black"
                   } font-bold`}
                 >
                   2
                 </div>
-                <div className="ml-3 text-sm text-white">Customer Details</div>
+                <div className="ml-3 text-sm">Customer Details</div>
               </div>
             </div>
           )}
@@ -365,59 +357,82 @@ function MultiStepBookingForm() {
             <div>
               {currentStep === 1 && (
                 <div>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                    Select Date and Time
+                  <h3 className="text-sm font-medium text-white tracking-wider uppercase bg-[#a23b21] px-6 py-3">
+                    Appointment
                   </h3>
 
-                  <div className="mb-6">
-                    {/* Calendar header */}
-                    <div className="flex items-center justify-evenly mb-4">
-                      <button
-                        onClick={goToPreviousMonth}
-                        type="button"
-                        className="p-1 rounded-full hover:bg-gray-100"
-                      >
-                        <ChevronLeft className="h-5 w-5 text-gray-500" />
-                      </button>
-                      <h4 className="text-lg font-medium text-gray-900">
-                        {getMonthYearString()}
-                      </h4>
-                      <button
-                        onClick={goToNextMonth}
-                        type="button"
-                        className="p-1 rounded-full hover:bg-gray-100"
-                      >
-                        <ChevronRight className="h-5 w-5 text-gray-500" />
-                      </button>
+                  <div className="bg-white px-6 py-5 border-b border-gray-300 shadow-2xl">
+                    <div className="flex items-center gap-5">
+                      <div className="">
+                        <img src="/PITTSBURGH PA.jpeg" alt="Ohio Map" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-800">
+                          North Ohio with North Ohio
+                        </h4>
+                        <p className="text-sm text-gray-700 mb-2">
+                          1 hour 30 minutes
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          Williams, Fulton, Defiance, Paulding, Henry, Putnam,
+                          Van Wert, Allen, Lucas, Wood, Hancock, Ottawa,
+                          Sandusky, Seneca, Erie, Huron, Lake, Ashtabula,
+                          Lorain, Cuyahoga, ...
+                        </p>
+                      </div>
                     </div>
+                  </div>
 
-                    {/* Weekday headers */}
-                    <div className="grid grid-cols-7 mb-1">
-                      {weekdays.map((day) => (
-                        <div
-                          key={day}
-                          className="text-center text-sm font-medium text-gray-500"
-                        >
-                          {day}
-                        </div>
-                      ))}
-                    </div>
+                  <h3 className="text-sm font-medium text-white tracking-wider uppercase bg-[#a23b21] px-6 py-3 mt-10">
+                    Date & Time
+                  </h3>
+                  <div className="flex gap-5 p-10 shadow-2xl">
+                    {/* Left - Calender */}
+                    <div className="md:w-3/5">
+                      {/* Calendar header */}
+                      <div className="flex items-center justify-center gap-4 mb-4">
+                        <ChevronLeft
+                          onClick={goToPreviousMonth}
+                          className="h-8 w-8 cursor-pointer hover:text-[#a23b21] text-gray-500"
+                        />
 
-                    {/* Calendar grid */}
-                    <div className="grid grid-cols-7 gap-1">
-                      {getCalendarDays().map((day, index) => {
-                        const isSelected = isSelectedDate(day);
-                        const isCurrentDay = isToday(day);
-                        const isPast = isPastDate(day);
+                        <h4 className="text-lg font-medium text-gray-900">
+                          {getMonthYearString()}
+                        </h4>
 
-                        return (
-                          <button
-                            key={index}
-                            type="button"
-                            disabled={isPast || !day.isCurrentMonth}
-                            onClick={() => handleDayClick(day)}
-                            className={`
-                              h-10 w-full rounded-full flex items-center justify-center text-sm
+                        <ChevronRight
+                          onClick={goToNextMonth}
+                          className="h-8 w-8 cursor-pointer hover:text-[#a23b21] text-gray-500"
+                        />
+                      </div>
+
+                      {/* Weekday headers */}
+                      <div className="grid grid-cols-7 mb-1">
+                        {weekdays.map((day) => (
+                          <div
+                            key={day}
+                            className="text-center text-sm font-semibold text-gray-500"
+                          >
+                            {day}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Calendar grid */}
+                      <div className="grid grid-cols-7 gap-1">
+                        {getCalendarDays().map((day, index) => {
+                          const isSelected = isSelectedDate(day);
+                          const isCurrentDay = isToday(day);
+                          const isPast = isPastDate(day);
+
+                          return (
+                            <button
+                              key={index}
+                              type="button"
+                              disabled={isPast || !day.isCurrentMonth}
+                              onClick={() => handleDayClick(day)}
+                              className={`
+                              h-10 w-full flex items-center justify-center text-sm
                               ${!day.isCurrentMonth ? "text-gray-300" : ""}
                               ${
                                 isPast && day.isCurrentMonth
@@ -426,7 +441,7 @@ function MultiStepBookingForm() {
                               }
                               ${
                                 isSelected
-                                  ? "bg-red-600 text-white font-medium"
+                                  ? "bg-[#a23b21] text-white font-medium"
                                   : ""
                               }
                               ${
@@ -443,75 +458,61 @@ function MultiStepBookingForm() {
                                   : ""
                               }
                             `}
-                          >
-                            {day.day}
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    {errors.date && (
-                      <p className="mt-2 text-sm text-red-600">{errors.date}</p>
-                    )}
-                  </div>
-
-                  {/* Selected date display */}
-                  {formData.date && (
-                    <div className="mb-6">
-                      <h4 className="text-base font-medium text-gray-900 mb-2">
-                        {formatDateForDisplay(formData.date)}
-                      </h4>
-                      <p className="text-sm text-gray-500">
-                        TIME ZONE: EASTERN TIME (GMT-04:00)
-                      </p>
-                    </div>
-                  )}
-
-                  {/* Time slot selection */}
-                  {formData.date && (
-                    <div className="mb-6">
-                      <h4 className="text-base font-medium text-gray-900 mb-2">
-                        Available Times
-                      </h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        {timeSlots.map((slot) => (
-                          <button
-                            key={slot.time}
-                            type="button"
-                            onClick={() => handleTimeSelect(slot.time)}
-                            className={`
-                              border rounded-md py-4 px-2 text-center
-                              ${
-                                formData.time === slot.time
-                                  ? "border-blue-600 ring-2 ring-blue-600"
-                                  : "border-gray-300 hover:border-gray-400"
-                              }
-                            `}
-                          >
-                            <div className="font-medium text-gray-900">
-                              {slot.time}
-                            </div>
-                            <div className="text-sm text-gray-500">
-                              {slot.spotsLeft === 1
-                                ? "1 spot left"
-                                : `${slot.spotsLeft} spots left`}
-                            </div>
-                          </button>
-                        ))}
+                            >
+                              {day.day}
+                            </button>
+                          );
+                        })}
                       </div>
-                      {errors.time && (
+
+                      {errors.date && (
                         <p className="mt-2 text-sm text-red-600">
-                          {errors.time}
+                          {errors.date}
                         </p>
                       )}
                     </div>
-                  )}
+
+                    {/* Right - Time & Info */}
+                    <div className="md:w-2/5">
+                      {formData.date && (
+                        <>
+                          <h4 className="text-sm font-semibold text-gray-800 mb-1">
+                            {formatDateForDisplay(formData.date)}
+                          </h4>
+                          <p className="text-xs text-gray-500 mb-4">
+                            TIME ZONE: EASTERN TIME (GMT-04:00)
+                          </p>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                            {timeSlots.map((slot) => (
+                              <button
+                                key={slot.time}
+                                type="button"
+                                onClick={() => handleTimeSelect(slot.time)}
+                                className={`border py-3 px-2 text-center${
+                                  formData.time === slot.time
+                                    ? "border-[#a23b21] bg-[#a23b21] text-gray-100"
+                                    : "border-gray-300 hover:border-gray-400"
+                                }`}
+                              >
+                                <div className="font-medium">{slot.time}</div>
+                                <div className="text-xs">
+                                  {slot.spotsLeft} spot
+                                  {slot.spotsLeft > 1 ? "s" : ""} left
+                                </div>
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
 
                   <div className="flex justify-end mt-6">
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#a23b21] hover:bg-[#d2bab4] hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       Next
                     </button>
@@ -521,18 +522,18 @@ function MultiStepBookingForm() {
 
               {currentStep === 2 && (
                 <form onSubmit={handleSubmit}>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
+                  <h3 className="text-lg text-center text-white font-medium tracking-wider uppercase bg-[#a23b21] py-4 mb-10">
                     Customer Details
                   </h3>
 
                   <div className="space-y-6">
-                    <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-y-6 gap-x-4">
                       <div>
                         <label
                           htmlFor="firstName"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-semibold text-gray-700"
                         >
-                          First Name
+                          First Name <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
@@ -540,11 +541,11 @@ function MultiStepBookingForm() {
                           name="firstName"
                           value={formData.firstName}
                           onChange={handleChange}
-                          className={`mt-1 block w-full border ${
+                          className={`mt-1 block w-full border-b-[1px] ${
                             errors.firstName
                               ? "border-red-500"
                               : "border-gray-300"
-                          } rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+                          }  py-2 px-3 focus:outline-none focus:ring-[#a23b21] focus:border-[#a23b21] sm:text-sm`}
                         />
                         {errors.firstName && (
                           <p className="mt-1 text-sm text-red-600">
@@ -553,12 +554,14 @@ function MultiStepBookingForm() {
                         )}
                       </div>
 
+                      {/* #a23b21 #d2bab4 */}
+
                       <div>
                         <label
                           htmlFor="lastName"
-                          className="block text-sm font-medium text-gray-700"
+                          className="block text-sm font-semibold text-gray-700"
                         >
-                          Last Name
+                          Last Name <span className="text-red-500">*</span>
                         </label>
                         <input
                           type="text"
@@ -566,11 +569,11 @@ function MultiStepBookingForm() {
                           name="lastName"
                           value={formData.lastName}
                           onChange={handleChange}
-                          className={`mt-1 block w-full border ${
+                          className={`mt-1 block w-full border-b-[1px] ${
                             errors.lastName
                               ? "border-red-500"
                               : "border-gray-300"
-                          } rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+                          }  py-2 px-3 focus:outline-none focus:ring-[#a23b21] focus:border-[#a23b21] sm:text-sm`}
                         />
                         {errors.lastName && (
                           <p className="mt-1 text-sm text-red-600">
@@ -580,64 +583,130 @@ function MultiStepBookingForm() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
-                      <div>
-                        <label
-                          htmlFor="phoneNumber"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Phone Number
-                        </label>
-                        <input
-                          type="tel"
-                          id="phoneNumber"
-                          name="phoneNumber"
-                          value={formData.phoneNumber}
-                          onChange={handleChange}
-                          className={`mt-1 block w-full border ${
-                            errors.phoneNumber
-                              ? "border-red-500"
-                              : "border-gray-300"
-                          } rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-                        />
-                        {errors.phoneNumber && (
-                          <p className="mt-1 text-sm text-red-600">
-                            {errors.phoneNumber}
-                          </p>
-                        )}
-                      </div>
+                    <div>
+                      <label
+                        htmlFor="phoneNumber"
+                        className="block text-sm font-semibold text-gray-700"
+                      >
+                        Phone Number <span className="text-red-500">*</span>
+                      </label>
+                      <p className="text-xs">
+                        Add your phone number to receive an appointment reminder
+                        via text message.
+                      </p>
+                      <input
+                        type="tel"
+                        id="phoneNumber"
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
+                        onChange={handleChange}
+                        className={`mt-1 block w-full border-b-[1px] ${
+                          errors.phoneNumber
+                            ? "border-red-500"
+                            : "border-gray-300"
+                        } py-2 px-3 focus:outline-none focus:ring-[#a23b21] focus:border-[#a23b21] sm:text-sm`}
+                      />
+                      {errors.phoneNumber && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.phoneNumber}
+                        </p>
+                      )}
+                    </div>
 
-                      <div>
-                        <label
-                          htmlFor="email"
-                          className="block text-sm font-medium text-gray-700"
-                        >
-                          Email
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className={`mt-1 block w-full border ${
-                            errors.email ? "border-red-500" : "border-gray-300"
-                          } rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-                        />
-                        {errors.email && (
-                          <p className="mt-1 text-sm text-red-600">
-                            {errors.email}
-                          </p>
-                        )}
-                      </div>
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-semibold text-gray-700"
+                      >
+                        Email <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={`mt-1 block w-full border-b-[1px] ${
+                          errors.email ? "border-red-500" : "border-gray-300"
+                        } py-2 px-3 focus:outline-none focus:ring-[#a23b21] focus:border-[#a23b21] sm:text-sm`}
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="text-sm">
+                      <p className="text-lg font-semibold">Hibachi KOTO</p>
+                      <p className="py-4">
+                        📲 Please make sure contact number is a CELL PHONE.{" "}
+                      </p>
+                      <ul>
+                        <li>💰 $55.00 Per adult $25.00 Per kid 12 and under</li>
+                        <li>💰 $550.00 minimum for all parties</li>
+                        <li>
+                          💰 All fees included except gratuity and travel fee
+                        </li>
+                        <li>💰 A gratuity of 18% required for the chef</li>
+                        <li>💰 Cash or Zelle Payment Accepted</li>
+                      </ul>
+                      <p className="py-4">
+                        🧑‍🍳Chef will arrive 10-15 minutes prior to the scheduled
+                        time
+                      </p>
+                      <p>
+                        {" "}
+                        🍱 Please note: Our booking manager will reach out 1
+                        week before the event to collect food orders.
+                      </p>
+                      <ul>
+                        <li>
+                          ✌️Each adult gets 2 proteins/Each kid gets 1 protein
+                        </li>
+                        <li>
+                          * Choices: Chicken · Steak · Shrimp · Salmon ·
+                          Filet+$5 · Scallop+$5 · Lobster+$10
+                        </li>
+                        <li>
+                          * 3rd Protein +$8 Chicken · Steak · Shrimp · Salmon ·
+                          Filet +$10 · Scallop +$10 · Lobster+$15
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="address"
+                        className="block text-sm font-semibold text-gray-700"
+                      >
+                        FULL ADDRESS OF PARTY (HOUSE #, STREET, TOWN){" "}
+                        <span className="text-red-500">*</span>
+                      </label>
+                      <textarea
+                        id="address"
+                        name="address"
+                        rows="3"
+                        value={formData.address}
+                        onChange={handleChange}
+                        className={`mt-1 block w-full border ${
+                          errors.address ? "border-red-500" : "border-gray-300"
+                        } py-2 px-3 focus:outline-none focus:ring-[#a23b21] focus:border-[#a23b21] sm:text-sm`}
+                      />
+                      {errors.address && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.address}
+                        </p>
+                      )}
                     </div>
 
                     <div>
                       <label
                         htmlFor="guestCount"
-                        className="block text-sm font-medium text-gray-700"
+                        className="block text-sm font-semibold text-gray-700"
                       >
-                        Guest Count
+                        ESTIMATED NUMBER OF GUESTS{" "}
+                        <span className="text-red-500">*</span>
                       </label>
                       <input
                         type="number"
@@ -650,7 +719,7 @@ function MultiStepBookingForm() {
                           errors.guestCount
                             ? "border-red-500"
                             : "border-gray-300"
-                        } rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
+                        } py-2 px-3 focus:outline-none focus:ring-[#a23b21] focus:border-[#a23b21] sm:text-sm`}
                       />
                       {errors.guestCount && (
                         <p className="mt-1 text-sm text-red-600">
@@ -661,34 +730,10 @@ function MultiStepBookingForm() {
 
                     <div>
                       <label
-                        htmlFor="address"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Address
-                      </label>
-                      <textarea
-                        id="address"
-                        name="address"
-                        rows="3"
-                        value={formData.address}
-                        onChange={handleChange}
-                        className={`mt-1 block w-full border ${
-                          errors.address ? "border-red-500" : "border-gray-300"
-                        } rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}
-                      />
-                      {errors.address && (
-                        <p className="mt-1 text-sm text-red-600">
-                          {errors.address}
-                        </p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label
                         htmlFor="foodAllergies"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Food Allergies or Dietary Notes (Optional)
+                        ANY FOOD ALLERGIES? (Optional)
                       </label>
                       <textarea
                         id="foodAllergies"
@@ -696,8 +741,110 @@ function MultiStepBookingForm() {
                         rows="3"
                         value={formData.foodAllergies}
                         onChange={handleChange}
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="mt-1 block w-full border border-gray-300 py-2 px-3 focus:outline-none focus:ring-[#a23b21] focus:border-[#a23b21] sm:text-sm"
                       />
+                    </div>
+
+                    <div className="text-sm pb-4">
+                      <p className="text-lg font-semibold">
+                        Cancelation Policy & Weather Policy
+                      </p>
+                      <p className="py-4">
+                        Free cancellation before 1 week of your party. 48 hours
+                        notice for all cancellations and rescheduled parties or
+                        guest will be charged a fee of $100.00. If it rains,
+                        customer is required to provide some type of covering
+                        for the chef to cook under so they can stay dry. We can
+                        cook under tents, and patios. Customer is responsible
+                        for canceling due to inclement weather within 48 hours
+                        of your party.
+                      </p>
+                      <div className="flex flex-row-reverse gap-4 justify-end items-center">
+                        <label htmlFor="cancelationPolicy">
+                          I have read and agree to the terms above
+                          <span className="text-red-500"> *</span>
+                        </label>
+                        <input
+                          type="checkbox"
+                          id="cancelationPolicy"
+                          name="cancelationPolicy"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="text-sm pb-4">
+                      <p className="text-lg font-semibold">
+                        Late-Arrival Policy
+                      </p>
+                      <p className="py-4">
+                        If your party has not arrived at scheduled time, our
+                        chef will wait up to 30 minutes. If any guest still does
+                        not show up after 30 minutes, our chef will start the
+                        show and the food will be cooking together.
+                      </p>
+                      <div className="flex flex-row-reverse gap-4 justify-end items-center">
+                        <label htmlFor="latePolicy">
+                          I have read and agree to the terms above
+                          <span className="text-red-500"> *</span>
+                        </label>
+                        <input
+                          type="checkbox"
+                          id="latePolicy"
+                          name="latePolicy"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div className="text-sm pb-4">
+                      <p className="text-lg font-semibold">
+                        Travel Fee& Payment Policy
+                      </p>
+                      <p className="py-4">
+                        * Pay After Chef Arrived Your Party. <br /> * We may
+                        charge a traveling fee according to the specific
+                        address.
+                      </p>
+                      <div className="flex flex-row-reverse gap-4 justify-end items-center">
+                        <label htmlFor="travelPolicy">
+                          I have read and agree to the terms above
+                          <span className="text-red-500"> *</span>
+                        </label>
+                        <input
+                          type="checkbox"
+                          id="travelPolicy"
+                          name="travelPolicy"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="text-sm pb-4">
+                      <p className="text-lg font-semibold">
+                        Terms & Conditions
+                      </p>
+                      <p className="py-4">
+                        Hibachi KOTO., or any agent, employee, director, or
+                        representative of Hibachi KOTO, will not be liable to
+                        any Licensee (Host) or Licensee's guests for property
+                        damage caused as a result of any party held on the
+                        Licensee's (Hosts) premises. For the purpose of this
+                        paragraph “property damage” is defined as: injury to any
+                        real or personal property on the premises of where the
+                        Hibachi KOTO event is taking place.
+                      </p>
+                      <div className="flex flex-row-reverse gap-4 justify-end items-center">
+                        <label htmlFor="termPolicy">
+                          I have read and agree to the terms above
+                          <span className="text-red-500"> *</span>
+                        </label>
+                        <input
+                          type="checkbox"
+                          id="termPolicy"
+                          name="termPolicy"
+                          required
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -711,7 +858,7 @@ function MultiStepBookingForm() {
                     </button>
                     <button
                       type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#a23b21] hover:bg-[#d2bab4] hover:text-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
                       Submit
                     </button>
