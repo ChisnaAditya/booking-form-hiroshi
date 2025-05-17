@@ -386,7 +386,7 @@ function MultiStepBookingForm() {
                   <h3 className="text-sm font-medium text-white tracking-wider uppercase bg-[#a23b21] px-6 py-3 mt-10">
                     Date & Time
                   </h3>
-                  <div className="flex gap-5 p-10 shadow-2xl">
+                  <div className="flex flex-col md:flex-row gap-5 p-10 shadow-2xl">
                     {/* Left - Calender */}
                     <div className="md:w-3/5">
                       {/* Calendar header */}
